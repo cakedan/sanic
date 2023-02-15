@@ -149,13 +149,13 @@ def _setup_system_signals(
 def _run_server_forever(loop, before_stop, after_stop, cleanup, unix):
     pid = os.getpid()
     try:
-        server_logger.info("Starting worker [%s]", pid)
+        server_logger.info("Starting worker [%s] 1", pid)
         loop.run_forever()
     except KeyboardInterrupt:
         server_logger.info("KEYBOARD INTERRUPT [%s]", pid)
         pass
     finally:
-        server_logger.info("Stopping worker [%s]", pid)
+        server_logger.info("Stopping worker [%s]" + loop.is_closed(), pid)
 
         loop.run_until_complete(before_stop())
 
