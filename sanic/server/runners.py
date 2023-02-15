@@ -155,6 +155,9 @@ def _run_server_forever(loop, before_stop, after_stop, cleanup, unix):
         server_logger.info("KEYBOARD INTERRUPT [%s]", pid)
         pass
     finally:
+        import traceback
+        traceback.print_last()
+        traceback.print_exc()
         server_logger.info("running [%s]" if loop.is_closed() else "stopped [%s]", pid)
         server_logger.info("Stopping worker [%s]", pid)
 
